@@ -21,11 +21,11 @@ $input = trim(fgets(STDIN));
 echo "Quantity (Max 45) : ";
 $quantity = trim(fgets(STDIN));
 $keyword = str_replace(" ", "%20", $input);
-$jsondecode = search("http://api.fdci.se/sosmed/rep.php?gambar=$keyword");
+$jsondecode = search("https://api.fdci.se/sosmed/rep.php?gambar=$keyword");
 $jsondecode = json_decode($jsondecode, TRUE);
 for ($i = 0; $i <= $quantity-1; $i++) { 
 	$extension = pathinfo($jsondecode[$i], PATHINFO_EXTENSION);
-	echo exec("wget -O Xmall75-Rep-$i.$extension $jsondecode[$i]");
+	echo exec("wget --no-check-certificate -O Xmall75-Rep-$i.$extension $jsondecode[$i]");
 }
 
 ?>
